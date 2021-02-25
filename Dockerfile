@@ -1,7 +1,7 @@
 FROM golang:1.16-alpine as builder
 
 WORKDIR  /go/src/github.com/avu12/firstgo/main/
-COPY main.go go.mod ./
+COPY main/main.go main/go.mod ./
 RUN go build .
 
 
