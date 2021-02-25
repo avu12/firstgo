@@ -13,4 +13,4 @@ FROM scratch
 # Get Ubuntu packages
 #Workarond for the html page:
 COPY --from=builder /go/src/github.com/avu12/firstgo/main/ .
-ENTRYPOINT ["./main"]
+CMD ["./main"]
