@@ -9,8 +9,7 @@ ENV GOOS=linux
 RUN go build .
 
 
-FROM scratch
-# Get Ubuntu packages
+FROM alpine
 #Workarond for the html page:
 COPY --from=builder /go/src/github.com/avu12/firstgo/main/ .
 CMD ["./main"]
