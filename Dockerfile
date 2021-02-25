@@ -6,10 +6,11 @@ COPY main/main.go main/go.mod ./
 ENV CGO_ENABLED=0
 #compile linux only
 ENV GOOS=linux
+ENV GOARCH=amd64
 RUN go build .
 
 
-FROM alpine
+FROM scratch
 #Workarond for the html page:
 COPY --from=builder /go/src/github.com/avu12/firstgo/main/ .
-CMD ["./main"]
+CMD [ "/firstgo" ]
