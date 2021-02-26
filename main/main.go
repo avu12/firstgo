@@ -6,8 +6,20 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/", HelloServer)
-	http.ListenAndServe(":8181", nil)
+	serverMuxMetrics := http.NewServeMux()
+	serverMuxMetrics.HandleFunc("/metrics", Metrics)
+	serverMuxHello := http.NewServeMux()
+	serverMuxHello.HandleFunc("/hello", HelloServer)
+
+	go func() {
+		http.ListenAndServe(":9100", serverMuxMetrics)
+	}()
+	http.ListenAndServe(":8080", serverMuxHello)
+}
+
+//Metrics will serve metrics for prometheus later on port 9100
+func Metrics(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Hello, metrics!")
 }
 
 //HelloServer comment
