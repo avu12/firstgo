@@ -9,7 +9,7 @@ func main() {
 	serverMuxMetrics := http.NewServeMux()
 	serverMuxMetrics.HandleFunc("/metrics", Metrics)
 	serverMuxHello := http.NewServeMux()
-	serverMuxHello.HandleFunc("/hello", HelloServer)
+	serverMuxHello.HandleFunc("/", HelloServer)
 
 	go func() {
 		http.ListenAndServe(":9100", serverMuxMetrics)
