@@ -16,4 +16,4 @@ EXPOSE 8080 9100
 COPY --from=builder /go/src/github.com/avu12/firstgo/main/firstgo ./goapp/firstgo
 COPY --from=builder /go/src/github.com/avu12/firstgo/main/static/ ./goapp/static/
 WORKDIR /goapp/
-CMD [ "/goapp/firstgo" ]
+CMD [ "/firstgo" ]
