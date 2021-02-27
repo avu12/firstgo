@@ -24,5 +24,10 @@ func Metrics(w http.ResponseWriter, r *http.Request) {
 
 //HelloServer comment
 func HelloServer(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello, from go!")
+	path := "." + r.URL.Path
+	if path == "./" {
+		path = "./static/index.html"
+	}
+	http.ServeFile(w, r, path)
+
 }
