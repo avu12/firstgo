@@ -9,7 +9,7 @@ func main() {
 	serverMuxMetrics := http.NewServeMux()
 	serverMuxMetrics.HandleFunc("/metrics", Metrics)
 	serverMuxHello := http.NewServeMux()
-	serverMuxHello.HandleFunc("/", HelloServer)
+	serverMuxHello.HandleFunc("/hello", HelloServer)
 
 	go func() {
 		http.ListenAndServe(":9100", serverMuxMetrics)
@@ -25,7 +25,7 @@ func Metrics(w http.ResponseWriter, r *http.Request) {
 //HelloServer comment
 func HelloServer(w http.ResponseWriter, r *http.Request) {
 	path := "." + r.URL.Path
-	if path == "./" {
+	if path == "./hello" {
 		path = "./static/index.html"
 	}
 	http.ServeFile(w, r, path)
