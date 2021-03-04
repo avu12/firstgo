@@ -1,3 +1,3 @@
 module gitlab.com/avu12/firstgo
 
-go 1.16 
+go 1.16
