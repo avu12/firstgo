@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os/exec"
 )
 
 func main() {
@@ -26,8 +27,11 @@ func Metrics(w http.ResponseWriter, r *http.Request) {
 func HelloServer(w http.ResponseWriter, r *http.Request) {
 	path := "." + r.URL.Path
 	if path == "./hello" {
-		path = "./main/static/index.html"
+		path = ".static/index.html"
+		cmd := exec.Command("ls")
+		stdout, _ := cmd.Output()
+		fmt.Fprintf(w, string(stdout))
 	}
-	http.ServeFile(w, r, path)
+	//http.ServeFile(w, r, path)
 
 }
