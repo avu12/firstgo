@@ -13,7 +13,7 @@ RUN go build .
 FROM arm64v8/ubuntu
 EXPOSE 8080 9100
 #Workarond for the html page:
-COPY --from=builder /go/src/github.com/avu12/firstgo/main/firstgo ./goapp/firstgo
-COPY --from=builder /go/src/github.com/avu12/firstgo/main/static/ ./goapp/static/
+COPY --from=builder /go/src/github.com/avu12/firstgo/main/firstgo ./main/firstgo
+COPY --from=builder /go/src/github.com/avu12/firstgo/main/static/ ./main/static/
 WORKDIR /goapp/
 CMD [ "./firstgo" ]

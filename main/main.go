@@ -26,7 +26,7 @@ func Metrics(w http.ResponseWriter, r *http.Request) {
 func HelloServer(w http.ResponseWriter, r *http.Request) {
 	path := "." + r.URL.Path
 	if path == "./hello" {
-		path = "./static/index.html"
+		path = "./main/static/index.html"
 	}
 	http.ServeFile(w, r, path)
 
