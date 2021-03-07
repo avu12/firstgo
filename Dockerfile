@@ -1,4 +1,4 @@
-FROM golang:1.16-alpine as builder
+FROM arm64v8/golang:1.16-alpine as builder
 
 WORKDIR  /go/src/github.com/avu12/firstgo/main/
 COPY main/ ./
@@ -6,11 +6,11 @@ COPY main/ ./
 ENV CGO_ENABLED=0
 #compile linux only
 ENV GOOS=linux
-ENV GOARCH=amd64
+ENV GOARCH=arm64
 RUN go build .
 
-
-FROM ubuntu
+#arm64 for raspi!
+FROM arm64v8/ubuntu
 EXPOSE 8080 9100
 #Workarond for the html page:
 COPY --from=builder /go/src/github.com/avu12/firstgo/main/firstgo ./goapp/firstgo
