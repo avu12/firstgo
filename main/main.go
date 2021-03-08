@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"net/http"
+
+	"github.com/avu12/m/v2/main/database"
 )
 
 func main() {
@@ -14,7 +16,11 @@ func main() {
 	go func() {
 		http.ListenAndServe(":9100", serverMuxMetrics)
 	}()
-	http.ListenAndServe(":8080", serverMuxHello)
+	go func() {
+		http.ListenAndServe(":8080", serverMuxHello)
+	}()
+	database.ConnectDatabase()
+
 }
 
 //Metrics will serve metrics for prometheus later on port 9100
